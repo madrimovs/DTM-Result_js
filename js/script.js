@@ -1,61 +1,67 @@
-//DTM-Test
-var bal = Number(prompt("To'plagan balingizni kiriting"));
-if (bal != "") {
-  if (bal > 0 && bal != String) {
-    var noBal = 0,
-      minBal = 80,
-      medBal = 100,
-      medBal2 = 150,
-      maxBal = 180;
-    //0--80 bal
-    if (bal < noBal || bal < minBal) {
-      alert(`Siz o'qishga tavsiya etilmadingiz.O'tish bali ${minBal} bal`);
-    }
-    //80--100 bal
-    else if (bal <= minBal || bal < medBal) {
-      alert(`Siz o'qishga super kontrakt asosida tavsiya etildingiz`);
-      var superContractMoney = 3000;
-      var superContract = Number(
-        prompt(
-          `Kontrakt miqdori yiliga ${superContractMoney}$. To'lovni amalga oshirish uchun pulingizni kiriting`
-        )
+const student = Number(prompt("To'plagan balingizni kiriting"));
+
+if (!isNaN(student)) {
+  const noBal = 0,
+    minBal = 80,
+    medBal = 100,
+    medBal2 = 150,
+    maxBal = 180;
+
+  if (student >= noBal && student < minBal) {
+    alert(`Siz o'qishga kira olmadingiz.O'tish bali ${minBal} bal`);
+  } else if (student >= minBal && student < medBal) {
+    alert(`Siz super kontrakt asosida o'qishga tavsiya etildingiz`);
+    const superContract = 3000;
+    const contract = Number(
+      prompt(
+        `Kontrakt miqdori yiliga ${superContract}$.To'lovni amalga oshirish uchun pulingizni kiriting`
+      )
+    );
+    const resultContract = superContract - contract;
+    if (contract < superContract) {
+      alert(
+        `Kiritilgan mablag' yetarli emas.To'lov uchun ${resultContract}$ yetmadi`
       );
-      if (superContract < superContractMoney) {
-        alert(`Sizning hisobingizda mablag' yetarli emas`);
-      } else {
-        if (superContract >= superContractMoney) {
-          alert(
-            `To'lov muvoffaqyatli amalga oshirildi,Tabriklaymiz siz super kontrakt asosida o'qishga qabul qilindingiz`
-          );
-        }
-      }
     }
-    //100--150 bal
-    else if (bal < medBal || bal < medBal2) {
-      alert(`Siz o'qishga kontrakt asosida qabul qilindingiz`);
-      var contractMoney = 2000;
-      var contract = Number(
-        prompt(
-          `Kontrakt miqdori yiliga ${contractMoney}$. To'lovni amalga oshirish uchun pulingizni kiriting`
-        )
+    const money = contract - superContract;
+    if (contract > superContract) {
+      alert(
+        `To'lov muvoffaqyatli amalga oshirildi.Siz super kontrakt asosida o'qishga qabul qilindingiz va sizda ${money}$ ortib qoldi`
       );
-      if (contract < contractMoney) {
-        alert("Sizning hisobingizda mablag' yetarli emas");
-      } else {
-        if (contract >= contractMoney) {
-          alert(
-            `To'lov muvoffaqyatli amalga oshirildi,Tabriklaymiz siz kontrakt asosida o'qishga qabul qilindingiz`
-          );
-        }
-      }
     }
-    //150--180 bal
-    else if (bal <= medBal2 || bal <= maxBal) {
-      alert("Tabriklaymiz siz GRANT asosida o'qishga qabul qilindingiz");
+    if (contract == superContract) {
+      alert(
+        `To'lov muvoffaqyatli amalga oshirildi.Siz super kontrakt asosida o'qishga qabul qilindindingiz`
+      );
     }
-  } else {
-    alert("Noto'g'ri qiymat kiritildi");
+  } else if (student >= medBal && student < medBal2) {
+    alert(`Siz kontrakt asosida o'qishga qabul qilindingiz`);
+    const contractSimple = 2000;
+    const studentMoney = Number(
+      prompt(
+        `Kontrakt miqdori yiliga ${contractSimple}$. Tolovni amalga oshirish uchun pulingizni kiriting`
+      )
+    );
+    const lowContract = contractSimple - studentMoney;
+    if (studentMoney < contractSimple) {
+      alert(
+        `Kiritilgan mablag' yetarli emas. To'lovni amalga oshirish uchun sizda ${lowContract}$ yetmadi`
+      );
+    }
+    const highContract = studentMoney - contractSimple;
+    if (studentMoney > contractSimple) {
+      alert(
+        `To'lov muvoffaqyatli amalga oshirildi.Siz super kontrakt asosida o'qishga qabul qilindingiz va sizda ${highContract}$ ortib qoldi`
+      );
+    }
+    if (studentMoney == contractSimple) {
+      alert(
+        `To'lov muvoffaqyatli amalga oshirildi.Siz kontrakt asosida o'qishga qabul qilindingiz`
+      );
+    }
+  } else if (student >= medBal2 && student <= maxBal) {
+    alert(`Siz o'qishga GRANT asosida qabul qilindingiz`);
   }
 } else {
-  alert("Qiymat kiritilmadi");
+  alert("Noto'g'ri qiymat kiritildi");
 }
